@@ -26,7 +26,7 @@
 //--------------------------------------------------------------------
 //  Default data:
 //--------------------------------------------------------------------
-byte DataABCDEiD[6] = {0x01, 0x00, 0x00, 0x00, 0x00, 0xFF};
+byte DataABCDEiD[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0xFF};
 
 
 
@@ -105,12 +105,11 @@ boolean ReadData(){
     tmp = tmp & 0x0F;
       }
   if((count%2) == 0) {
-    DataABCDEiD[count / 2] = DataABCDEiD[(count - 1) / 2] & 0x0F;
-    DataABCDEiD[count / 2] = DataABCDEiD[(count - 1) / 2] | (tmp << 4);
+    DataABCDEiD[count / 2] = DataABCDEiD[count / 2] & 0x0F;
+    DataABCDEiD[count / 2] = DataABCDEiD[count / 2] | (tmp << 4);
     } else {
-    Serial.println(count, DEC);
-    DataABCDEiD[(count - 1) / 2] = DataABCDEiD[count / 2] & 0xF0;
-    DataABCDEiD[(count - 1) / 2] = DataABCDEiD[count / 2] | tmp;
+    DataABCDEiD[(count - 1) / 2] = DataABCDEiD[(count - 1) / 2] & 0xF0;
+    DataABCDEiD[(count - 1) / 2] = DataABCDEiD[(count - 1) / 2] | tmp;
       }
   count++;
  }
